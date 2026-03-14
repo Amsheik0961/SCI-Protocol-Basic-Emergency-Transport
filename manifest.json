@@ -1,0 +1,22 @@
+{
+  "name": "SCI Protocol App",
+  "short_name": "SCI Protocol",
+  "description": "Mobile-first spinal cord injury clinical decision support web application.",
+  "start_url": "./app.html",
+  "display": "standalone",
+  "background_color": "#eef3f8",
+  "theme_color": "#10253f",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

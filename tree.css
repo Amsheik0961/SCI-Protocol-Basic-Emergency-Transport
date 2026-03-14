@@ -1,0 +1,188 @@
+.tree-canvas {
+  position: absolute;
+  inset: 0;
+  transform-origin: 0 0;
+  cursor: grab;
+  overflow: auto;
+  padding: 2rem 2rem 6rem;
+}
+
+.tree-canvas.dragging {
+  cursor: grabbing;
+}
+
+.tree-root {
+  min-width: max-content;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.tree-level {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  justify-content: center;
+  width: max-content;
+}
+
+.tree-branch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 320px;
+}
+
+.tree-node {
+  width: 320px;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 1rem;
+  box-shadow: var(--shadow-soft);
+  transition: 0.15s ease;
+}
+
+.tree-node.active {
+  border-color: var(--secondary);
+  box-shadow: 0 12px 28px rgba(45, 111, 163, 0.18);
+}
+
+.tree-node.current {
+  outline: 3px solid rgba(45, 111, 163, 0.22);
+}
+
+.tree-node.urgent {
+  border-left: 6px solid var(--danger);
+}
+
+.tree-node.warning {
+  border-left: 6px solid var(--warning);
+}
+
+.tree-node.safe {
+  border-left: 6px solid var(--success);
+}
+
+.tree-node-header {
+  display: grid;
+  gap: 0.45rem;
+  margin-bottom: 0.55rem;
+}
+
+.tree-node-step {
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--secondary);
+}
+
+.tree-node h4 {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  color: var(--primary);
+}
+
+.tree-node p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.tree-node-tags {
+  margin-top: 0.8rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tree-connector-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 46px;
+}
+
+.tree-line {
+  background: #9cb0c3;
+}
+
+.tree-line-vertical {
+  width: 2px;
+  height: 16px;
+}
+
+.tree-edge-label {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: var(--shadow-soft);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: center;
+  max-width: 220px;
+}
+
+.tree-edge-label.active {
+  border-color: rgba(45, 111, 163, 0.35);
+  background: #eef6fd;
+}
+
+.tree-edge-label strong {
+  color: var(--text);
+  font-size: 0.75rem;
+}
+
+.tree-edge-label span {
+  font-size: 0.68rem;
+  line-height: 1.25;
+}
+
+.minimap {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  width: 190px;
+  height: 130px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-soft);
+  padding: 0.6rem;
+  overflow: hidden;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.minimap-track {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.minimap-item {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 900px) {
+  .tree-node,
+  .tree-branch {
+    min-width: 280px;
+    width: 280px;
+  }
+
+  .tree-level {
+    flex-direction: column;
+    align-items: center;
+  }
+}

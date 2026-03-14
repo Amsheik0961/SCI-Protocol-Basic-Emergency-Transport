@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#10253f" />
+    <meta
+      name="description"
+      content="SCI Protocol App - mobile-first spinal cord injury clinical decision support web application."
+    />
+
+    <title>SCI Protocol App</title>
+
+    <link rel="manifest" href="manifest.json" />
+    <link rel="icon" type="image/png" href="assets/icons/icon-192.png" />
+    <link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
+
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+  </head>
+  <body class="landing-body">
+    <main class="landing-shell">
+      <section class="hero-card">
+        <div class="hero-badge">Clinical Decision Support</div>
+
+        <h1>SCI Protocol App</h1>
+
+        <p class="hero-subtitle">
+          Interactive, mobile-optimized spinal cord injury and spinal trauma
+          protocol support for prehospital care, emergency care, ICU workflows,
+          and surgery.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button button-primary" href="app.html">Open App</a>
+        </div>
+
+        <div class="hero-grid">
+          <article class="info-card">
+            <h2>Protocol Navigation</h2>
+            <p>
+              Stepwise decision support designed for rapid bedside use and clear
+              branching logic.
+            </p>
+          </article>
+
+          <article class="info-card">
+            <h2>Resource-Stratified</h2>
+            <p>
+              Supports low-, medium-, and high-resource environments across the
+              care pathway.
+            </p>
+          </article>
+
+          <article class="info-card">
+            <h2>Offline Ready</h2>
+            <p>
+              Built as a Progressive Web App for GitHub Pages deployment and
+              field use.
+            </p>
+          </article>
+        </div>
+
+        <div class="source-note">
+          Based on the uploaded SCI protocol source documents and consensus
+          guidance.
+        </div>
+      </section>
+    </main>
+
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker
+            .register("./service-worker.js")
+            .catch(function (error) {
+              console.error("Service worker registration failed:", error);
+            });
+        });
+      }
+    </script>
+  </body>
+</html>

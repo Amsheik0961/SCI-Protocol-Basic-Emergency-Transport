@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <meta name="theme-color" content="#10253f" />
+
+    <title>SCI Protocol App</title>
+
+    <link rel="manifest" href="manifest.json" />
+
+    <link rel="icon" href="assets/icons/icon-192.png" />
+    <link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
+
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/tree.css" />
+  </head>
+
+  <body>
+    <div class="app-shell">
+
+      <!-- Sidebar -->
+
+      <aside class="sidebar">
+
+        <div class="brand-block">
+          <div class="brand-kicker">Clinical Protocol</div>
+          <h1>SCI Protocol</h1>
+          <p>
+            Interactive spinal cord injury decision support.
+          </p>
+        </div>
+
+        <!-- Protocol Selector -->
+
+        <section class="panel-block">
+
+          <label class="field-label" for="protocolSelect">
+            Protocol
+          </label>
+
+          <select id="protocolSelect" class="input-control">
+          </select>
+
+        </section>
+
+        <!-- View Mode -->
+
+        <section class="panel-block">
+
+          <label class="field-label" for="viewModeSelect">
+            View Mode
+          </label>
+
+          <select id="viewModeSelect" class="input-control">
+
+            <option value="step">
+              Step-by-step
+            </option>
+
+            <option value="tree">
+              Decision tree
+            </option>
+
+          </select>
+
+        </section>
+
+        <!-- Navigation Controls -->
+
+        <section class="panel-block quick-actions">
+
+          <button
+            id="homeBtn"
+            class="button button-secondary"
+          >
+            Home
+          </button>
+
+          <button
+            id="backBtn"
+            class="button button-secondary"
+          >
+            Back
+          </button>
+
+          <button
+            id="restartBtn"
+            class="button button-danger"
+          >
+            Restart
+          </button>
+
+        </section>
+
+        <!-- Status Panel -->
+
+        <section class="panel-block status-block">
+
+          <div class="status-row">
+
+            <span>Current Step</span>
+
+            <strong id="currentStepLabel">
+              —
+            </strong>
+
+          </div>
+
+          <div class="status-row">
+
+            <span>Path Length</span>
+
+            <strong id="pathLengthLabel">
+              0
+            </strong>
+
+          </div>
+
+        </section>
+
+        <!-- Disclaimer -->
+
+        <section class="panel-block disclaimer-block">
+
+          <h2>Clinical Notice</h2>
+
+          <p>
+            This tool provides protocol guidance and decision support.  
+            It does not replace clinician judgment, local policy, or specialist consultation.
+          </p>
+
+        </section>
+
+      </aside>
+
+
+      <!-- Main Content -->
+
+      <main class="main-stage">
+
+        <!-- Header -->
+
+        <header class="topbar">
+
+          <div>
+
+            <div
+              class="topbar-kicker"
+              id="protocolCategoryLabel"
+            >
+              Protocol
+            </div>
+
+            <h2 id="protocolTitle">
+              Select a protocol
+            </h2>
+
+          </div>
+
+          <div class="topbar-meta">
+
+            <span
+              class="pill pill-info"
+              id="scenarioLabel"
+            >
+              No scenario selected
+            </span>
+
+            <span
+              class="pill pill-neutral"
+              id="urgencyLabel"
+            >
+              Ready
+            </span>
+
+          </div>
+
+        </header>
+
+
+        <!-- Home View -->
+
+        <section
+          id="homeView"
+          class="view-panel home-view active"
+        >
+
+          <div class="welcome-card">
+
+            <h3>Choose a clinical pathway</h3>
+
+            <p>
+              Select a spinal trauma protocol pathway based on the
+              care environment and available resources.
+            </p>
+
+            <div
+              class="domain-grid"
+              id="domainGrid"
+            ></div>
+
+          </div>
+
+        </section>
+
+
+        <!-- Step View -->
+
+        <section
+          id="stepView"
+          class="view-panel step-view"
+        >
+
+          <article
+            class="step-card"
+            id="stepCard"
+          >
+
+            <div class="step-header">
+
+              <div>
+
+                <div
+                  class="step-kicker"
+                  id="stepKicker"
+                >
+                  Step
+                </div>
+
+                <h3 id="stepTitle">
+                  Awaiting selection
+                </h3>
+
+              </div>
+
+              <div class="step-badges">
+
+                <span
+                  class="pill pill-neutral"
+                  id="stepUrgency"
+                >
+                  —
+                </span>
+
+                <span
+                  class="pill pill-neutral"
+                  id="stepComplexity"
+                >
+                  —
+                </span>
+
+              </div>
+
+            </div>
+
+            <p
+              class="step-text"
+              id="stepText"
+            >
+              Select a protocol to begin.
+            </p>
+
+            <div
+              class="alerts-box"
+              id="alertsBox"
+            ></div>
+
+            <div
+              class="actions-box"
+              id="actionsBox"
+            ></div>
+
+            <div
+              class="options-grid"
+              id="optionsGrid"
+            ></div>
+
+          </article>
+
+
+          <!-- Support Panel -->
+
+          <aside class="support-panel">
+
+            <section class="support-card">
+
+              <h4>Clinical Pearls</h4>
+
+              <ul
+                id="pearlsList"
+                class="support-list"
+              ></ul>
+
+            </section>
+
+
+            <section class="support-card">
+
+              <h4>Decision Path</h4>
+
+              <ol
+                id="pathSummary"
+                class="path-list"
+              ></ol>
+
+            </section>
+
+          </aside>
+
+        </section>
+
+
+        <!-- Tree View -->
+
+        <section
+          id="treeView"
+          class="view-panel tree-view"
+        >
+
+          <div class="tree-toolbar">
+
+            <div class="tree-toolbar-group">
+
+              <button
+                id="zoomInBtn"
+                class="button button-secondary"
+              >
+                Zoom In
+              </button>
+
+              <button
+                id="zoomOutBtn"
+                class="button button-secondary"
+              >
+                Zoom Out
+              </button>
+
+              <button
+                id="fitTreeBtn"
+                class="button button-secondary"
+              >
+                Fit
+              </button>
+
+            </div>
+
+            <div class="tree-toolbar-group">
+
+              <button
+                id="resetTreeBtn"
+                class="button button-danger"
+              >
+                Reset
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <div
+            class="tree-stage"
+            id="treeStage"
+          >
+
+            <div
+              class="tree-canvas"
+              id="treeCanvas"
+            ></div>
+
+            <div
+              class="minimap"
+              id="minimap"
+            ></div>
+
+          </div>
+
+        </section>
+
+      </main>
+
+    </div>
+
+
+    <!-- JavaScript -->
+
+    <script src="js/protocol-data.js"></script>
+    <script src="js/protocol-engine.js"></script>
+    <script src="js/tree-engine.js"></script>
+    <script src="js/canvas-controls.js"></script>
+    <script src="js/minimap.js"></script>
+    <script src="js/ui-controller.js"></script>
+
+  </body>
+</html>
